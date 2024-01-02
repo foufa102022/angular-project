@@ -47,6 +47,7 @@ pipeline {
                 script {
                     dir('backend') {
                         bat '.\\mvnw clean install'
+                        // bat './mvnw clean install'
                     }
                 }
             }
