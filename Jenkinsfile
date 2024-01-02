@@ -8,17 +8,17 @@ pipeline {
         NODEJS_PATH = "C:\\Program Files (x86)\\nodejs"
     }
 
-    stages {
-        stage('Install Node.js and npm') {
-            steps {
-                script {
-                    def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-                    env.PATH = "${nodejs}/bin:${env.PATH}"
-                     // Check and update npm
-                      bat 'npm install -g npm@10.2.5'
-                }
-            }
+   stage('Install Node.js and npm') {
+    steps {
+        script {
+            def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+            env.PATH = "${nodejs}/bin:${env.PATH}"
+            // Check and update npm
+            bat 'npm install -g npm@10.2.5'
         }
+    }
+}
+
 
         stage('Checkout') {
             steps {
