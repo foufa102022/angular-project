@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: DB-container
+    restart: always
+    networks: 
+      - net-projet
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 0000
+    ports:
+      - "5432:5432"
+    volumes: 
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    image: chetouiiftikhar/spring-img:${BUILD_ID}
+    container_name: backend-container
+    restart: always
+    networks:
+      - net-projet
+    ports:
+      - "2424:2424"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 0000
+
+  frontend:
+    image: angular-image:3
+    container_name: frontend-container
+    restart: always
+    networks:
+      - net-projet
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+networks:  
+  net-projet:
