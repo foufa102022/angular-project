@@ -76,6 +76,8 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
+                    //suppression du docker-compose de la derniere build
+                    bat "docker-compose down"
                     // Run Docker container using docker-compose
                     bat "docker-compose up -d"
                 }
