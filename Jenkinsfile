@@ -38,6 +38,7 @@ pipeline {
                     // Build and tag Docker image for Angular project
                     bat "docker build -t front-ang-image:${BUILD_ID} ./"
                     bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                     bat "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
                 }}
             }
         }
