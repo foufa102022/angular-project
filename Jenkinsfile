@@ -43,7 +43,7 @@ pipeline {
         stage('Build Spring Boot Project') {
             steps {
                 script {
-                    dir('dreamdrop') {
+                    dir('backend') {
                         bat '.\\mvnw clean install'
                     }
                 }
