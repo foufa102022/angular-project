@@ -32,7 +32,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: 0000
 
   frontend:
-    image: angular-image:3
+    image: chetouiiftikhar/front-ang-image:${BUILD_ID}
     container_name: frontend-container
     restart: always
     networks:
