@@ -1,0 +1,44 @@
+<main id="main">
+  <section id="about" class="about">
+<section id="hero" class="clearfix">
+  <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center" data-aos="fade-up">
+
+    <h4>Sign Up </h4>
+    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+      <div class="form-group">
+        <input type="text" name="nom" class="form-control" id="nom" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="Nom" required>
+      </div>
+      <div class="form-group mt-3">
+        <input type="text" class="form-control" name="prenom" id="prenom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="prenom" required>
+      </div>
+      <div class="form-group mt-3">
+        <input type="text" class="form-control" name="role" id="role" [(ngModel)]="role" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="Role" required>
+      </div>
+      <div class="form-group mt-3">
+        <input type="email"   class="form-control" name="email" id="email"  [(ngModel)]="email" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="email" required>
+      </div>
+      <div class="form-group mt-3">
+        <input type="password" class="form-control" name="password" id="password"  [(ngModel)]="password" [ngModelOptions]="{standalone: true}"  class="form-control"  placeholder="password" required>
+      </div>
+      <div class="form-group mt-3">
+        <label>isarchived</label>
+        <input type="checkbox" class="form-control" name="isarchived" id="isarchived" [(ngModel)]="isarchived" [ngModelOptions]="{standalone: true}"  class="form-control" >
+      </div>
+      <div class="form-group mt-3">
+      <label>isarchived</label>
+        <input type="checkbox" class="form-control" name="isblocked" id="isblocked" [(ngModel)]="isblocked" [ngModelOptions]="{standalone: true}"  class="form-control" >
+      </div>
+      <div class="form-group mt-3">
+        <input type="date" class="form-control" name="created_date" id="created_date" placeholder="created_date"   [(ngModel)]="created_date" [ngModelOptions]="{standalone: true}"  class="form-control" required>
+      </div>
+      
+
+      <div class="text-center"><button type="submit" title="Send Message" class="btn btn-primary btn-lg"
+        style="padding-left: 2.5rem; padding-right: 2.5rem;"  (click)="save()" >Ajouter</button>
+      </div>
+    </form>
+
+  </div>
+
+</div>
