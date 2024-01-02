@@ -29,7 +29,7 @@ pipeline {
         stage('Build & rename Docker Image') {
             steps {
                 script {
-                    dir(angular-project){
+                    dir('angular-project'){
                     // Build and tag Docker image for Angular project
                     bat "docker build -t front-ang-image:${BUILD_ID} /angular-project/"
                     bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
