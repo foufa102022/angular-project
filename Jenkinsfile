@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        JAVA_HOME = "C:\\Program Files\\Java\\jdk-17"
         DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
         PATH = "${DOCKER_PATH}:${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
