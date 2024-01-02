@@ -15,7 +15,7 @@ pipeline {
             def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
             env.PATH = "${nodejs}/bin:${env.PATH}"
             // Check and update npm
-            bat 'npm install -g npm@10.2.5'
+            bat 'npm install -g npm@9.5.0'
         }
     }
 }
