@@ -7,6 +7,7 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
         NODEJS_PATH = "C:\\Program Files (x86)\\nodejs"
     }
+    stages{
 
    stage('Install Node.js and npm') {
     steps {
