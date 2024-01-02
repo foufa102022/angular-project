@@ -1,14 +1,14 @@
 pipeline {
     agent any
 
+    
     environment {
-        JAVA_HOME = "C:\\Program Files\\Java\\jdk-17"
-        PATH = "${JAVA_HOME}\\bin:${PATH};${DOCKER_PATH}"
-        DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
-        PATH = "${DOCKER_PATH}:${PATH}"
-        DOCKERHUB_CREDENTIALS = credentials('DockerHub')
-        NODEJS_PATH = "C:\\Program Files (x86)\\nodejs"
-    }
+    JAVA_HOME = "C:\\Program Files\\Java\\jdk-17"
+    PATH = "${JAVA_HOME}\\bin:${PATH};C:\\Program Files\\Docker\\cli-plugins"
+    DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+    NODEJS_PATH = "C:\\Program Files (x86)\\nodejs"
+}
+
     stages{
 
    stage('Install Node.js and npm') {
