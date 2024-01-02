@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         JAVA_HOME = "C:\\Program Files\\Java\\jdk-17"
+        PATH = "${JAVA_HOME}\\bin:${PATH};${DOCKER_PATH}"
         DOCKER_PATH = "C:\\Program Files\\Docker\\cli-plugins"
         PATH = "${DOCKER_PATH}:${PATH}"
         DOCKERHUB_CREDENTIALS = credentials('DockerHub')
