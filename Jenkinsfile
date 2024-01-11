@@ -3,7 +3,7 @@ pipeline {
 
     
     environment {
-    VAGRANT_MACHINE_IP = sh(script: 'vagrant ssh -c "hostname -I | cut -d\" \" -f1"', returnStdout: true).trim()
+    VAGRANT_MACHINE_IP = "192.168.149.200"
     JAVA_HOME = "C:\\Program Files\\Java\\jdk-17"
     PATH = "${JAVA_HOME}\\bin:${PATH};C:\\Program Files\\Docker\\cli-plugins"
     DOCKERHUB_CREDENTIALS = credentials('DockerHub')
