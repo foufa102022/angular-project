@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-        stage('Build & rename Docker Image') {
+        stage('Build remotly Docker Image') {
             steps {
                 script {
                      //supression des images et containers de dernier build
@@ -75,7 +75,7 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Run Docker Container in stack') {
             steps {
                 script {
                     
