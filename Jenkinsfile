@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                      //supression des images et containers de dernier build
-                     bat "docker-compose -H tcp://${VAGRANT_MACHINE_IP}:2375 down"
-                     bat " docker rmi $(docker images)"
+                     //bat "docker-compose -H tcp://${VAGRANT_MACHINE_IP}:2375 down"
+                     //bat 'docker rmi $(docker images)'
                     dir('angular-project'){
                     // Build and tag Docker image for Angular project
                     bat "docker -H tcp://${VAGRANT_MACHINE_IP}:2375 build -t chetouiiftikhar/front-ang-image:${BUILD_ID} ./"
