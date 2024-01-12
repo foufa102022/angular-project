@@ -44,7 +44,7 @@ pipeline {
                 }}
             }
         }
-
+        }
         stage('Build Spring Boot Project') {
             steps {
                 script {
