@@ -3,7 +3,7 @@ pipeline {
 
     
     environment {
-    VAGRANT_MACHINE_IP = "192.168.149.200"
+  //  VAGRANT_MACHINE_IP = "192.168.149.200"
     JAVA_HOME = "C:\\Program Files\\Java\\jdk-17"
     PATH = "${JAVA_HOME}\\bin:${PATH};C:\\Program Files\\Docker\\cli-plugins"
     DOCKERHUB_CREDENTIALS = credentials('DockerHub')
@@ -40,7 +40,7 @@ pipeline {
                      //bat 'docker rmi $(docker images)'
                     dir('angular-project'){
                     // Build and tag Docker image for Angular project
-                    bat "docker -H tcp://${VAGRANT_MACHINE_IP}:2375 build -t chetouiiftikhar/front-ang-image:${BUILD_ID} ./"
+                    bat "docker -H tcp://192.168.149.200:2375 build -t chetouiiftikhar/front-ang-image:${BUILD_ID} ./"
                   
                      //bat "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
                 }}
@@ -68,7 +68,7 @@ pipeline {
                         }
                         // Build, tag, and push Docker image for Spring Boot project
                        // bat 'docker --version'
-                        bat 'docker -H tcp://${VAGRANT_MACHINE_IP}:2375 build -t chetouiiftikhar/spring-img ./'
+                        bat 'docker -H tcp://192.168.149.200:2375 build -t chetouiiftikhar/spring-img ./'
                        
                     }
                 }
@@ -81,7 +81,7 @@ pipeline {
                     
                    
                     // Run Docker container using docker-compose
-                    bat "docker-compose -H tcp://${VAGRANT_MACHINE_IP}:2375 up -d"
+                    bat "docker-compose -H tcp://192.168.149.200:2375 up -d"
                 }
             }
         }
