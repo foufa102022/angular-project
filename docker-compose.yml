@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres:15
-    container_name: DB-container
+    container_name: lastDB-container
     restart: always
     networks: 
       - net-projet
@@ -18,7 +18,7 @@ services:
 
   backend:
     image: chetouiiftikhar/spring-image:${BUILD_ID}
-    container_name: backend-container
+    container_name: lastbackend-container
     restart: always
     networks:
       - net-projet
@@ -33,7 +33,7 @@ services:
 
   frontend:
     image: chetouiiftikhar/front-ang-image:${BUILD_ID}
-    container_name: frontend-container
+    container_name: lastfrontend-container
     restart: always
     networks:
       - net-projet
