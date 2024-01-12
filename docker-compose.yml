@@ -17,7 +17,7 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   backend:
-    image: chetouiiftikhar/spring-img:${BUILD_ID}
+    image: chetouiiftikhar/spring-imgf:${BUILD_ID}
     container_name: backend-container
     restart: always
     networks:
@@ -32,7 +32,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: 0000
 
   frontend:
-    image: angular-image:${BUILD_ID}
+    image: chetouiiftikhar/front-ang-imagef:${BUILD_ID}
     container_name: frontend-container
     restart: always
     networks:
