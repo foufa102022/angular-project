@@ -40,7 +40,7 @@ pipeline {
                    // bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
                       withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
                       bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
-                      bat "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                      bat "docker push chetouiiftikhar/front-ang-imagef:${BUILD_ID}"
                 }}
             }
         }
@@ -69,7 +69,7 @@ pipeline {
                         bat 'docker build -t chetouiiftikhar/spring-imgf ./'
                       //  bat "docker tag spring-img:latest chetouiiftikhar/spring-img:${BUILD_ID}"
                         // Push Docker image to Docker Hub
-                        bat "docker push chetouiiftikhar/spring-img:${BUILD_ID}"
+                        bat "docker push chetouiiftikhar/spring-imgf:${BUILD_ID}"
                     }
                 }
             }
