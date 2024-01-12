@@ -66,7 +66,7 @@ pipeline {
                         }
                         // Build, tag, and push Docker image for Spring Boot project
                         bat 'docker --version'
-                        bat 'docker build -t chetouiiftikhar/spring-imgf ./'
+                        bat 'docker build -t chetouiiftikhar/spring-imgf:${BUILD_ID} ./'
                       //  bat "docker tag spring-img:latest chetouiiftikhar/spring-img:${BUILD_ID}"
                         // Push Docker image to Docker Hub
                         bat "docker push chetouiiftikhar/spring-imgf:${BUILD_ID}"
