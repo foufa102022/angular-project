@@ -34,17 +34,15 @@ pipeline {
         stage('Build & rename Docker Image') {
             steps {
                 script {
-                     dir('angular-project'){
+                    dir('angular-project'){
                     // Build and tag Docker image for Angular project
-                      bat "docker build -t chetouiiftikhar/frontangimagef:${BUILD_ID} ./"
-                   // bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
-                      withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
-                      bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
-                    //  bat "docker push chetouiiftikhar/frontangimagef:${BUILD_ID}"
+                    bat "docker build -t front-ang-image:${BUILD_ID} ./"
+                    bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                     bat "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
                 }}
             }
         }
-        }
+
         stage('Build Spring Boot Project') {
             steps {
                 script {
@@ -66,10 +64,10 @@ pipeline {
                         }
                         // Build, tag, and push Docker image for Spring Boot project
                         bat 'docker --version'
-                        bat 'docker build -t chetouiiftikhar/springimgf:${BUILD_ID} ./'
-                      //  bat "docker tag spring-img:latest chetouiiftikhar/spring-img:${BUILD_ID}"
+                        bat 'docker build -t spring-image ./'
+                        bat "docker tag spring-img:latest chetouiiftikhar/spring-image:${BUILD_ID}"
                         // Push Docker image to Docker Hub
-                      //  bat "docker push chetouiiftikhar/springimgf:${BUILD_ID}"
+                        bat "docker push chetouiiftikhar/spring-image:${BUILD_ID}"
                     }
                 }
             }
@@ -79,9 +77,9 @@ pipeline {
             steps {
                 script {
                     //suppression du docker-compose de la derniere build
-                   // bat "docker-compose down"
+                    bat "docker-compose down"
                     // Run Docker container using docker-compose
-                      bat "docker-compose up -d"
+                    bat "docker-compose up -d"
                 }
             }
         }
