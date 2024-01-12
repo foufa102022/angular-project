@@ -1,0 +1,72 @@
+<head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <!-- Ajout de la classe "fixed-top" pour fixer la navbar en haut -->
+    <a class="navbar-brand" href="#">Admin Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/liste-utlisateur"> Utilisateurs Liste</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/liste-project" >Projets List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/home" >Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</head>
+<main id="main">
+    <section id="about" class="about">
+<section id="hero" class="clearfix">
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center" data-aos="fade-up">
+
+            <div>
+            <h2>Utilisateur liste :</h2>
+            <table class="table">
+                <thead>     
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">isblocked</th>
+                    <th scope="col">isarchived</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Option</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of data">
+                   
+                    <td>{{ item.id}}</td>
+                    <td> {{ item.nom}}</td>
+                    <td> {{ item.prenom}}</td>
+                    <td>   {{ item.role}}</td>
+                    <td> {{ item.email}}</td>
+                    <td> {{ item.password}}</td>
+                    <td>   {{ item.isblocked}}</td>
+                    <td> {{ item.isarchived}}</td>
+                    <td> {{ item.created_date}}</td>
+                    <td>
+                        <button type="button" class="btn btn-success" (click)="goToAddPage(item.id)" >Edit</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteUtilisateur(item.id)">Delete</button>
+                    </td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</section> 

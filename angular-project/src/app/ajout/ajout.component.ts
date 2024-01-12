@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ProviderService } from '../provider.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-ajout',
   templateUrl: './ajout.component.html',
@@ -10,112 +12,48 @@ export class AjoutComponent {
   isResultLoaded = false;
   isUpdateFormActive = false;
  
-  
-  titre: string ="";
-  date: string ="";
-  etat: number =0;
-  description : string ="";
- 
-  ID = "";
-constructor(private http: HttpClient )
-  {
-    this.getAllProject();
+  public project={
+    titre:"",
+    date_created:new Date('yyyy-MM-dd:00:00.000+00:00'),
+    etat: 0,
+    description : "",
+  }
+  public idProject! :number;
+constructor(private providerService :ProviderService,private router:Router,private route :ActivatedRoute)
+ {
  
   }
-  getAllProject()
-  {
-    
-    this.http.get("http://localhost:2424/api/interventions")
-  
-    .subscribe((resultData: any)=>
-    {
-        this.isResultLoaded = true;
-        console.log(resultData);
-        this.ProjectArray= resultData;
-    });
-  }
- 
-  register()
-  {
-  
-    let bodyData = {
-      "titre" : this.titre,
-      "date" : this.date,
-      "etat" : this.etat,
-      "description" : this.description
-    };
- 
-    this.http.post("http://localhost:2424/api/interventions/save",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
-    {
-        console.log(resultData);
-        alert("project Registered Successfully");
-        this.getAllProject();
-        this.titre = '';
-      this.date = '';
-      this.etat = 0;
-        this.description = '';
-    });
-  }
-  setUpdate(data: any)
-  {
-   this.titre = data.titre;
-   this.date = data.date;
-   this.etat = data.etat
-   this.description = data.description;
-   this.ID = data.id;
-  }
- 
-  UpdateRecords()
-  {
-    let bodyData = {
-      "id" : this.ID,
-      "titre" : this.titre,
-      "date" : this.date,
-      "etat" : this.etat,
-      "description" : this.description
-    };
-    
-    this.http.put("http://localhost:2424/api/intervention/update",bodyData,{responseType: 'text'}).subscribe((resultData: any)=>
-    {
-        console.log(resultData);
-        alert("project Registered Updateddd")
-        this.getAllProject();
-        this.titre = '';
-        this.date = '';
-        this.etat = 0;
-        this.description = '';
-    });
-  }
- 
-  save()
-  {
-    if(this.ID == '')
-    {
-        this.register();
+  ngOnInit() {
+    this.idProject = +this.route.snapshot.params['id'];
+    if(this.idProject)
+    this.getProjects();
+     }
+     getProjects(){
+       this.providerService.getProjects().subscribe((result) => {
+         const data = result;
+         const proj =result.find((el:any)=>el.id==this.idProject);
+         console.log(proj);
+         
+         if(proj)
+         this.project=proj
+     });
     }
-      else
-      {
-       this.UpdateRecords();
-      }      
- 
-  }
- 
-  setDelete(data: any)
-  {
+  save(){
+    this.providerService.saveProject(this.project).subscribe((result) => {
+      this.router.navigate(['finance']);
+  },err=>{
     
-    
-    this.http.delete("http://localhost:2424/api/intervention/deletecustomer"+ "/"+ data.id,{responseType: 'text'}).subscribe((resultData: any)=>
-    {
-        console.log(resultData);
-        alert("Project Deletedddd")
-        this.getAllProject();
-        this.titre = '';
-      this.date = '';
-      this.etat = 0;
-        this.description  = '';
-  
-    });
- 
+  });
   }
- }
+  update(){
+    this.providerService.editProjects(this.idProject,this.project).subscribe((result) => {
+      console.log('updated');
+      this.router.navigate(['liste-project']);
 
+      
+  },err=>{
+    
+  });
+  }
+ 
+ }

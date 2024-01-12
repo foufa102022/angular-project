@@ -1,0 +1,21 @@
+#app{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    #main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+          /* The image used */
+      background-image: url("../../img/intro-bg.jpg");
+      margin-top: 92px;
+    
+      /* Full height */
+      height: 80vh;
+    
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+}

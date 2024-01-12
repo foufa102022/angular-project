@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProviderService } from '../../../src/app/provider.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-finance',
   templateUrl: './finance.component.html',
@@ -12,11 +13,23 @@ export class FinanceComponent implements OnInit {
   data: any;
   
 
-  constructor(private providerService: ProviderService) {}
+  constructor(private providerService: ProviderService,private router :Router) {}
 
   ngOnInit() {
-      this.providerService.getData('http://localhost:2424/api/utilisateurs').subscribe((result) => {
-          this.data = result;
-      });
+ this.getProjects();
+  }
+  getProjects(){
+    this.providerService.getProjects().subscribe((result) => {
+      this.data = result;
+  });
+  }
+  deleteProject(id:number){
+    this.providerService.deleteProjects(id).subscribe((result) => {
+      this.getProjects();
+  })
+  }
+  goToAddPage(id:number){
+    this.router.navigate(['ajout/'+id]);
+
   }
 }

@@ -1,3 +1,6 @@
+
+<app-navbar></app-navbar>
+
 <main id="main">
   <section id="about" class="about">
 <section id="hero" class="clearfix">
@@ -7,16 +10,16 @@
     <h4>Ajout Project </h4>
     <form >
       <div class="form-group">
-        <input type="text" name="titre" class="form-control" id="titre"  [(ngModel)]="titre" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="titre" required>
+        <input type="text" name="titre" class="form-control" id="titre"  [(ngModel)]="project.titre"   class="form-control" placeholder="titre" required>
       </div>
       <div class="form-group mt-3">
-        <input type="date" class="form-control" name="date" id="date"  [(ngModel)]="date" [ngModelOptions]="{standalone: true}"  class="form-control"  placeholder="date" required>
+        <input type="date" class="form-control" name="date_created" id="date_created"  [(ngModel)]="project.date_created"  class="form-control"  placeholder="date" required>
       </div>
       <div class="form-group mt-3">
-        <input type="text" class="form-control" name="etat" id="etat" [(ngModel)]="etat" [ngModelOptions]="{standalone: true}"  class="form-control"  placeholder="Etat" required>
+        <input type="text" class="form-control" name="etat" id="etat" [(ngModel)]="project.etat"  class="form-control"  placeholder="Etat" required>
       </div>
       <div class="form-group mt-3">
-        <textarea class="form-control" id="description" name="description" rows="5"  [(ngModel)]="description" [ngModelOptions]="{standalone: true}"  class="form-control" placeholder="description" required></textarea>
+        <textarea class="form-control" id="description" name="description" rows="5"  [(ngModel)]="project.description"  class="form-control" placeholder="description" required></textarea>
       </div>
 
       <div class="my-3">
@@ -24,10 +27,11 @@
       </div>
 
       <div class="text-center"><button type="submit" title="Send Message" class="btn btn-primary btn-lg"
-        style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="save()">Ajouter</button>
+        style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="idProject?update():save()">{{idProject?'Modifier':'Ajouter'}}</button>
       </div>
     </form>
 
   </div>
 
 </div>
+

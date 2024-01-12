@@ -1,0 +1,75 @@
+pipeline {
+    agent any
+
+    environment {
+        JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"  // Adjust this path based on your Java installation on Ubuntu
+        PATH = "${JAVA_HOME}/bin:${PATH}"
+        DOCKERHUB_CREDENTIALS = credentials('DockerHub')
+        NODEJS_PATH = "/usr/bin/node"  // Adjust this path based on your Node.js installation on Ubuntu
+    }
+
+    stages {
+        stage('Install Node.js and npm') {
+            steps {
+                script {
+                    def nodejs = tool name: 'NODEJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+                    env.PATH = "${nodejs}/bin:${env.PATH}"
+                    // Check and update npm
+                    sh 'npm install -g npm@9.5.0'
+                }
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Build & rename Docker Image') {
+            steps {
+                script {
+                    dir('angular-project') {
+                        // Build and tag Docker image for Angular project
+                        sh "docker build -t front-ang-image:${BUILD_ID} ./"
+                        sh "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                        sh "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                    }
+                }
+            }
+        }
+
+        stage('Build Spring Boot Project') {
+            steps {
+                script {
+                    dir('backend') {
+                        sh './mvnw clean install'  // Use sh instead of bat for Unix-like systems
+                    }
+                }
+            }
+        }
+
+        stage('Docker Build and Push') {
+            steps {
+                script {
+                    dir('backend') {
+                        // Login to Docker Hub
+                        withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
+                            sh "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
+                        }
+                        // Build, tag, and push Docker image for Spring Boot project
+                        sh 'docker --version'
+                        sh 'docker build -t spring-img ./'
+                        sh "docker tag spring-img:latest chetouiiftikhar/spring-img:${BUILD_ID}"
+                        // Push Docker image to Docker Hub
+                        sh "docker push chetouiiftikhar/spring-img:${BUILD_ID}"
+                    }
+                }
+            }
+        }
+
+       
+    }
+}

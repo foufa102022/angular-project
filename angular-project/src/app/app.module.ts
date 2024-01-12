@@ -7,7 +7,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AjoutComponent } from './ajout/ajout.component';
 import { FinanceComponent } from './finance/finance.component';
-import { WorkComponent } from './work/work.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +14,8 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { SignComponent } from './sign/sign.component';
 import { FormsModule } from '@angular/forms';
+import { ListeProjectComponent } from './liste-project/liste-project.component';
+import { ListeUtilisateurComponent } from './liste-utilisateur/liste-utilisateur.component';
 
 
 @NgModule({
@@ -24,13 +25,14 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     AjoutComponent,
     FinanceComponent,
-    WorkComponent,
     AboutComponent,
     ContactComponent,
     HomeComponent,
     AdminComponent,
     LoginComponent,
-    SignComponent
+    SignComponent,
+    ListeProjectComponent,
+    ListeUtilisateurComponent
   ],
   imports: [
     BrowserModule,
