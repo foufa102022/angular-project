@@ -36,9 +36,9 @@ pipeline {
                 script {
                     dir('angular-project'){
                     // Build and tag Docker image for Angular project
-                    bat "docker build -t front-ang-image:${BUILD_ID} ./"
-                    bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
-                     bat "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                    bat "docker build -t chetouiiftikhar/front-ang-image:${BUILD_ID} ./"
+                    //bat "docker tag front-ang-image:${BUILD_ID} chetouiiftikhar/front-ang-image:${BUILD_ID}"
+                     //bat "docker push chetouiiftikhar/front-ang-image:${BUILD_ID}"
                 }}
             }
         }
@@ -65,9 +65,9 @@ pipeline {
                         // Build, tag, and push Docker image for Spring Boot project
                         bat 'docker --version'
                         bat 'docker build -t spring-image ./'
-                        bat "docker tag spring-img:latest chetouiiftikhar/spring-image:${BUILD_ID}"
+                        bat "docker tag spring-image:latest chetouiiftikhar/spring-image:${BUILD_ID}"
                         // Push Docker image to Docker Hub
-                        bat "docker push chetouiiftikhar/spring-image:${BUILD_ID}"
+                      //  bat "docker push chetouiiftikhar/spring-image:${BUILD_ID}"
                     }
                 }
             }
