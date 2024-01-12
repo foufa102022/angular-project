@@ -76,6 +76,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
+                    //dockerlogin
+                     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR')]) {
+                            bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
                     //suppression du docker-compose de la dernière build
                     // bat "docker-compose down"
                     // Run Docker container using docker-compose
