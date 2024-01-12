@@ -23,7 +23,7 @@ services:
     networks:
       - net-projet
     ports:
-      - "2424:2424"
+      - "2425:2424"
     depends_on:
       - postgres
     environment:
@@ -38,7 +38,7 @@ services:
     networks:
       - net-projet
     ports:
-      - "80:80"
+      - "82:80"
     depends_on:
       - backend
 
